@@ -19,7 +19,7 @@ package debug;
 
 import ball.Ball;
 import brick.Wall;
-import test.GameBoard;
+import main.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
