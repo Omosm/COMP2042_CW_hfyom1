@@ -21,6 +21,7 @@ import brick.Wall;
 import brick.Brick;
 import ball.Ball;
 import ball.Player;
+import debug.DebugConsole;
 
 import javax.swing.*;
 import java.awt.*;
