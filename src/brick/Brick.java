@@ -1,5 +1,7 @@
 package brick;
 
+import test.Ball;
+
 import java.awt.*;
 import java.awt.Point;
 import java.awt.geom.GeneralPath;

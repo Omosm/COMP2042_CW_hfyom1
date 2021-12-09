@@ -17,6 +17,11 @@
  */
 package test;
 
+import brick.Wall;
+import brick.Brick;
+import test.Ball;
+import test.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
