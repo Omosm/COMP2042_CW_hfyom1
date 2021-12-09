@@ -15,7 +15,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package brick;
+
+import brick.Brick;
+import brick.CementBrick;
+import brick.ClayBrick;
+import brick.SteelBrick;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

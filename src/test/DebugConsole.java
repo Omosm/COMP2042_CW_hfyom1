@@ -17,6 +17,8 @@
  */
 package test;
 
+import brick.Wall;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;

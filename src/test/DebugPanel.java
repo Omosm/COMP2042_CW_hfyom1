@@ -17,6 +17,8 @@
  */
 package test;
 
+import brick.Wall;
+
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
