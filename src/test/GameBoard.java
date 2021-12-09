@@ -19,8 +19,8 @@ package test;
 
 import brick.Wall;
 import brick.Brick;
-import test.Ball;
-import test.Player;
+import ball.Ball;
+import ball.Player;
 
 import javax.swing.*;
 import java.awt.*;

@@ -17,6 +17,7 @@
  */
 package test;
 
+import ball.Ball;
 import brick.Wall;
 
 import javax.swing.*;

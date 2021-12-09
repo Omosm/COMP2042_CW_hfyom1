@@ -17,13 +17,9 @@
  */
 package brick;
 
-import brick.Brick;
-import brick.CementBrick;
-import brick.ClayBrick;
-import brick.SteelBrick;
-import test.Ball;
-import test.Player;
-import test.RubberBall;
+import ball.Ball;
+import ball.Player;
+import ball.RubberBall;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

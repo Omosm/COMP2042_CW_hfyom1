@@ -1,6 +1,6 @@
 package brick;
 
-import test.Ball;
+import ball.Ball;
 
 import java.awt.*;
 import java.awt.Point;
