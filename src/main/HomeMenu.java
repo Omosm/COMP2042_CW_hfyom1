@@ -36,10 +36,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
 
-    private static final Color BG_COLOR = Color.GREEN.darker();
-    private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color BG_COLOR = Color.BLUE.darker();
+    private static final Color BORDER_COLOR = new Color(93, 169, 255); //Venetian Red
+    private static final Color DASH_BORDER_COLOR = new  Color(204, 249, 255);//school bus yellow
+    private static final Color TEXT_COLOR = new Color(0, 0, 0);//egyptian blue
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
@@ -63,6 +63,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean startClicked;
     private boolean menuClicked;
 
+    private Image background;
 
     public HomeMenu(GameFrame owner,Dimension area){
 
@@ -75,6 +76,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         this.owner = owner;
 
 
+        background = new ImageIcon("C:\\Users\\omaro\\OneDrive\\Desktop\\CS-Assignments\\SoftMaintain\\Coursework\\CW\\src\\resources\\Purple.jpg")
+                .getImage();
+        this.setPreferredSize(area);
 
         menuFace = new Rectangle(new Point(0,0),area);
         this.setPreferredSize(area);
@@ -147,6 +151,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setStroke(tmp);
 
         g2d.setColor(prev);
+        g2d.drawImage(background, 0, 0, null);
     }
 
     private void drawText(Graphics2D g2d){
