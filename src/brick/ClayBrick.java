@@ -1,7 +1,5 @@
 package brick;
 
-import brick.Brick;
-
 import java.awt.*;
 import java.awt.Point;
 
@@ -33,7 +31,7 @@ public class ClayBrick extends Brick {
 
     @Override
     public Shape getBrick() {
-        return super.brickFace;
+        return super.getBrickFace();
     }
 
 

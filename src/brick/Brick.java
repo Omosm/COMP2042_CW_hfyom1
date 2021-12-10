@@ -27,7 +27,7 @@ abstract public class Brick  {
     private static Random rnd;
 
     private String name;
-    Shape brickFace;
+    private Shape brickFace;
 
     private Color border;
     private Color inner;
@@ -42,7 +42,7 @@ abstract public class Brick  {
         rnd = new Random();
         broken = false;
         this.name = name;
-        brickFace = makeBrickFace(pos,size);
+        setBrickFace(makeBrickFace(pos,size));
         this.border = border;
         this.inner = inner;
         this.fullStrength = this.strength = strength;
@@ -66,13 +66,13 @@ abstract public class Brick  {
         if(broken)
             return 0;
         int out  = 0;
-        if(brickFace.contains(b.right))
+        if(getBrickFace().contains(b.right))
             out = LEFT_IMPACT;
-        else if(brickFace.contains(b.left))
+        else if(getBrickFace().contains(b.left))
             out = RIGHT_IMPACT;
-        else if(brickFace.contains(b.up))
+        else if(getBrickFace().contains(b.up))
             out = DOWN_IMPACT;
-        else if(brickFace.contains(b.down))
+        else if(getBrickFace().contains(b.down))
             out = UP_IMPACT;
         return out;
     }
@@ -96,6 +96,14 @@ abstract public class Brick  {
 
     public final boolean isBroken(){
         return broken;
+    }
+
+    public Shape getBrickFace() {
+        return brickFace;
+    }
+
+    public void setBrickFace(Shape brickFace) {
+        this.brickFace = brickFace;
     }
 
     public class Crack{
@@ -138,7 +146,7 @@ abstract public class Brick  {
         }
 
         protected void makeCrack(Point2D point, int direction){
-            Rectangle bounds = Brick.this.brickFace.getBounds();
+            Rectangle bounds = Brick.this.getBrickFace().getBounds();
 
             Point impact = new Point((int)point.getX(),(int)point.getY());
             Point start = new Point();
