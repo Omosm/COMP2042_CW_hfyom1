@@ -49,25 +49,16 @@ abstract public class Brick  {
 
     }
 
-    protected abstract Shape makeBrickFace(Point pos,Dimension size);
+    public void impact(){
+        strength--;
+        broken = (strength == 0);
+    }
 
     public  boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
         impact();
         return  broken;
-    }
-
-    public abstract Shape getBrick();
-
-
-
-    public Color getBorderColor(){
-        return  border;
-    }
-
-    public Color getInnerColor(){
-        return inner;
     }
 
 
@@ -86,18 +77,25 @@ abstract public class Brick  {
         return out;
     }
 
-    public final boolean isBroken(){
-        return broken;
-    }
 
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
-    public void impact(){
-        strength--;
-        broken = (strength == 0);
+    protected abstract Shape makeBrickFace(Point pos,Dimension size);
+    public abstract Shape getBrick();
+
+    public Color getBorderColor(){
+        return  border;
+    }
+
+    public Color getInnerColor(){
+        return inner;
+    }
+
+    public final boolean isBroken(){
+        return broken;
     }
 
     public class Crack{
