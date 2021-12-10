@@ -42,7 +42,7 @@ abstract public class Brick  {
         rnd = new Random();
         broken = false;
         this.name = name;
-        setBrickFace(makeBrickFace(pos,size));
+        brickFace = makeBrickFace(pos,size);
         this.border = border;
         this.inner = inner;
         this.fullStrength = this.strength = strength;
@@ -83,7 +83,9 @@ abstract public class Brick  {
         strength = fullStrength;
     }
 
-    protected abstract Shape makeBrickFace(Point pos,Dimension size);
+    protected Shape makeBrickFace(Point pos,Dimension size){
+        return new Rectangle(pos,size);
+    }
     public abstract Shape getBrick();
 
     public Color getBorderColor(){
@@ -102,9 +104,6 @@ abstract public class Brick  {
         return brickFace;
     }
 
-    public void setBrickFace(Shape brickFace) {
-        this.brickFace = brickFace;
-    }
 
     public class Crack{
 

@@ -51,10 +51,10 @@ public class CementBrick extends Brick {
         brickFace = super.getBrickFace();
     }
 
-    @Override
+   /* @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
-    }
+    }*/
 
     @Override
     public Shape getBrick() {

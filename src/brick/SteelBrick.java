@@ -52,10 +52,10 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
-    @Override
+    /*@Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
-    }
+    }*/
 
     @Override
     public Shape getBrick() {
