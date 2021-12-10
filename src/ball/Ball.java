@@ -28,16 +28,10 @@ abstract public class Ball {
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
         this.center = center;
 
-        up = new Point2D.Double();
-        down = new Point2D.Double();
-        left = new Point2D.Double();
-        right = new Point2D.Double();
-
-        up.setLocation(center.getX(),center.getY()-(radiusB / 2));
-        down.setLocation(center.getX(),center.getY()+(radiusB / 2));
-
-        left.setLocation(center.getX()-(radiusA /2),center.getY());
-        right.setLocation(center.getX()+(radiusA /2),center.getY());
+        up = new Point2D.Double(center.getX(),center.getY()-(radiusB / 2));
+        down = new Point2D.Double(center.getX(),center.getY()+(radiusB / 2));
+        left = new Point2D.Double(center.getX()-(radiusA /2),center.getY());
+        right = new Point2D.Double(center.getX()+(radiusA /2),center.getY());
 
 
         ballFace = makeBall(center,radiusA,radiusB);
