@@ -17,8 +17,7 @@
  */
 package main;
 
-import main.GameFrame;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -26,6 +25,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 
 public class HomeMenu extends JComponent implements MouseListener, MouseMotionListener {
@@ -37,9 +39,9 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final String MENU_TEXT = "Exit";
 
     private static final Color BG_COLOR = Color.BLUE.darker();
-    private static final Color BORDER_COLOR = new Color(93, 169, 255); //Venetian Red
-    private static final Color DASH_BORDER_COLOR = new  Color(204, 249, 255);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(0, 0, 0);//egyptian blue
+    private static final Color BORDER_COLOR = new Color(93, 169, 255);
+    private static final Color DASH_BORDER_COLOR = new  Color(204, 249, 255);
+    private static final Color TEXT_COLOR = new Color(0, 0, 0);
     private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
     private static final Color CLICKED_TEXT = Color.WHITE;
     private static final int BORDER_SIZE = 5;
@@ -63,7 +65,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private boolean startClicked;
     private boolean menuClicked;
 
-    private Image background;
+    private Image backgroundImage;
 
     public HomeMenu(GameFrame owner,Dimension area){
 
@@ -76,8 +78,12 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         this.owner = owner;
 
 
-        background = new ImageIcon("C:\\Users\\omaro\\OneDrive\\Desktop\\CS-Assignments\\SoftMaintain\\Coursework\\CW\\src\\resources\\Purple.jpg")
-                .getImage();
+        try {
+            BufferedImage background = ImageIO.read(new File("src/resources/Purple.jpg"));
+            backgroundImage = background;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         this.setPreferredSize(area);
 
         menuFace = new Rectangle(new Point(0,0),area);
@@ -151,7 +157,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setStroke(tmp);
 
         g2d.setColor(prev);
-        g2d.drawImage(background, 0, 0, null);
+        g2d.drawImage(backgroundImage, 0, 0, null);
     }
 
     private void drawText(Graphics2D g2d){
