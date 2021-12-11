@@ -79,8 +79,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
 
         try {
-            BufferedImage background = ImageIO.read(new File("src/resources/Purple.jpg"));
-            backgroundImage = background;
+            backgroundImage = ImageIO.read(new File("src/main/resources/Purple.jpg"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
