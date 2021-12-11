@@ -59,6 +59,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private Rectangle restartButtonRect;
     private int strLen;
 
+    private Image background;
+
     private DebugConsole debugConsole;
 
 
@@ -130,7 +132,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         clear(g2d);
 
-        g2d.setColor(Color.BLUE);
+        background = new ImageIcon(getClass().getResource("/Purple_BG.jpg")).getImage();
+        g2d.drawImage(background,0,0,DEF_WIDTH,DEF_HEIGHT,null);
+
+        g2d.setColor(Color.GREEN);
         g2d.drawString(message,250,225);
 
         drawBall(wall.ball,g2d);
