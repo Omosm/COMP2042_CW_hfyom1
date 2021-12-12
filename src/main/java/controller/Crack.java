@@ -1,7 +1,5 @@
 package controller;
 
-import controller.Brick;
-
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
@@ -20,7 +18,6 @@ public class Crack {
     public static final int HORIZONTAL = 200;
 
 
-    private final Brick model;
     private GeneralPath crack;
 
     private int crackDepth;
@@ -28,8 +25,7 @@ public class Crack {
     private static Random rnd;
 
 
-    public Crack(Brick model, int crackDepth, int steps) {
-        this.model = model;
+    public Crack(int crackDepth, int steps) {
 
         crack = new GeneralPath();
         this.crackDepth = crackDepth;
@@ -48,8 +44,8 @@ public class Crack {
         crack.reset();
     }
 
-    public void makeCrack(Point2D point, int direction) {
-        Rectangle bounds = model.getBrickFace().getBounds();
+    public void makeCrack(Point2D point, int direction, Shape brickFace) {
+        Rectangle bounds = brickFace.getBounds();
 
         Point impact = new Point((int) point.getX(), (int) point.getY());
         Point start = new Point();

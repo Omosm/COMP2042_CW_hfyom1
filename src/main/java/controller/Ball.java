@@ -120,5 +120,29 @@ abstract public class Ball {
         return speedY;
     }
 
+    /**
+     * getter for ball's up coordinate
+     * @return up point of ball
+     */
+    public Point2D getUp() {return up;}
+
+    /**
+     * getter for ball's down coordinate
+     * @return down point of ball
+     */
+    public Point2D getDown() {return down;}
+
+    /**
+     * getter for ball's left coordinate
+     * @return left point of ball
+     */
+    public Point2D getLeft() {return left;}
+
+    /**
+     * getter for ball's right coordinate
+     * @return right point of ball
+     */
+    public Point2D getRight() {return right;}
+
 
 }

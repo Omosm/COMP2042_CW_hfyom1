@@ -63,4 +63,10 @@ public class SteelBrick extends Brick {
         return brickFace;
     }
 
+    /**
+     * getter for rnd
+     * @return Random rnd
+     */
+    public Random getRnd() {return rnd;}
+
 }

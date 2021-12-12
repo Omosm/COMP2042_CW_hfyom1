@@ -139,7 +139,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
         g2d.translate(x,y);
 
-        //methods calls
+        //method call
         drawText(g2d);
         drawButton(g2d);
         //end of methods calls
@@ -153,9 +153,6 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private void drawContainer(Graphics2D g2d){
         Color prev = g2d.getColor();
-
-        int x=menuFace.x;
-        int y=menuFace.y;
 
         g2d.setColor(BG_COLOR);
         g2d.fill(menuFace);
@@ -343,8 +340,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Point p = mouseEvent.getPoint();
         if(startButton.contains(p)){
 
-            String pname = playerNam.pname;
-            pnames=pname;
+            pnames= playerNam.pname;
             //sv.SaveScorename(pname);
             playerNam.setVisible(false);
             playerNam.dispose();

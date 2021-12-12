@@ -21,7 +21,7 @@ public class CementBrick extends Brick {
 
     public CementBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
-        crack = new Crack(this, DEF_CRACK_DEPTH,DEF_STEPS);
+        crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
         brickFace = super.getBrickFace();
     }
 
@@ -31,7 +31,7 @@ public class CementBrick extends Brick {
             return false;
         super.impact();
         if(!super.isBroken()){
-            crack.makeCrack(point,dir);
+            crack.makeCrack(point,dir,brickFace);
             updateBrick();
             return false;
         }

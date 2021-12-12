@@ -76,7 +76,7 @@ abstract public class Brick  {
         strength = fullStrength;
     }
 
-    protected Shape makeBrickFace(Point pos,Dimension size){
+    public Shape makeBrickFace(Point pos, Dimension size){
         return new Rectangle(pos,size);
     }
     public abstract Shape getBrick();

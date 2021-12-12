@@ -202,6 +202,36 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * setter for ballCount
+     * @param ballCount number of balls
+     */
+    public void setBallCount(int ballCount) {this.ballCount = ballCount;}
+
+    /**
+     * getter for ballLost
+     * @return boolean value of ballLost
+     */
+    public void setBallLost(boolean ballLost) {this.ballLost = ballLost;}
+
+    /**
+     * getter for Bricks
+     * @return array of bricks
+     */
+    public Brick[] getBricks() {return bricks;}
+
+    /**
+     * getter for ball
+     * @return ball
+     */
+    public Ball getBall() {return ball;}
+
+    /**
+     * getter for player
+     * @return player green bar
+     */
+    public Player getPlayer() {return player;}
+
 
 
 }
