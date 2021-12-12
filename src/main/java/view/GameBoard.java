@@ -26,6 +26,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 
 
@@ -37,6 +41,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
+    public static String pname = "";
 
 
     private static final int DEF_WIDTH = 600;
@@ -62,6 +67,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private Image background;
 
     private DebugConsole debugConsole;
+    SaveScore sv =new SaveScore();
+    Hashtable<Integer, String> listhighscore;
+    int Score=0;
+    int prevBrick=0;
 
 
     public GameBoard(JFrame owner){
@@ -86,10 +95,17 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         gameTimer = new Timer(10,e ->{
             wall.move();
             wall.findImpacts();
-            message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
+
+            Score= sv.TempSaveScore((31-wall.getBrickCount())-prevBrick);
+            prevBrick = (31-wall.getBrickCount());
+
+            message = String.format("Score: %d Bricks: %d Balls %d",Score,wall.getBrickCount(),wall.getBallCount());
             if(wall.isBallLost()){
                 if(wall.ballEnd()){
+                    sv.InsertSaveScore(pname,Score);
                     wall.wallReset();
+                    listhighscore = new Hashtable<Integer, String>();
+                    listhighscore = sv.CallSaveScore();
                     message = "Game over";
                 }
                 wall.ballReset();
@@ -136,7 +152,42 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.drawImage(background,0,0,DEF_WIDTH,DEF_HEIGHT,null);
 
         g2d.setColor(Color.GREEN);
-        g2d.drawString(message,250,225);
+
+        if(message.contains("Game over"))
+        {
+            int xx=250;
+            int yy =100;
+            g2d.drawString(message,xx,yy);
+            listhighscore = new Hashtable<Integer, String>();
+            listhighscore = sv.CallSaveScore();
+            yy+=30;
+            message="High Score";
+            g2d.drawString(message,xx,yy);
+
+
+            Enumeration names;
+            String key;
+            names = listhighscore.keys();
+            Set<Integer> keys = listhighscore.keySet();
+            Iterator<Integer> itr = keys.iterator();
+            int i=1;
+            /* sorting part */
+            while(itr.hasNext()) {
+                int ii = itr.next();
+                // key = (String) names.nextElement();
+                yy += 15;
+
+                message = ((i++) + ". " + listhighscore.get(ii) + " : " + ii);
+                g2d.drawString(message, xx, yy);
+            }
+            ////////////////////////////////////////////////
+            yy+=30;
+            message = ("PRESS SPACE TO CONTINUE");
+            g2d.drawString(message, xx, yy);
+        }
+        else {
+            g2d.drawString(message, 250, 225);
+        }
 
         drawBall(wall.ball,g2d);
 
