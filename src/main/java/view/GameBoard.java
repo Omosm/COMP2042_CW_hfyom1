@@ -32,7 +32,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 
-
+/**
+ * GameBoard is the renderer of the game itself where it draws the wall, ball, player
+ * it also holds the pause menu, debugConsole
+ */
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
@@ -72,7 +75,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     int Score=0;
     int prevBrick=0;
 
-
+    /**
+     * Constructor of GameBoard class which initialize pauseMenu, debugConsole, gameTimer, wall of bricks
+     *
+     * @param owner GameFrame
+     */
     public GameBoard(JFrame owner){
         super();
 
@@ -131,7 +138,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 
-
+    /**
+     * initialize gameBoard as a JComponent with a specific size,
+     * also adds (key,mouse,mouseMotion)Listener to gameBoard
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -142,6 +152,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 
+    /**
+     * paint method draws all component in GameBoard
+     * @param g graphics object
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -210,6 +224,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * draw bricks and fill it up with inner and border color
+     * @param model bricks
+     * @param g2d graphics2D object
+     */
     private void drawBrick(Brick model,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -223,6 +242,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * draw the ball and fill it up with inner and border color
+     * @param ball ball
+     * @param g2d graphics2D object
+     */
     private void drawBall(Ball ball,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -237,6 +261,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * draw the player bar and fill it up with inner and border color
+     * @param p Player
+     * @param g2d graphics2D object
+     */
     private void drawPlayer(Player p,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -250,11 +279,20 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * make an opaque black screen
+     * then display PauseMenu
+     * @param g2d graphics2D object
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * it sets the screen to opaque black
+     * @param g2d graphics2D object
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -270,6 +308,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * it displays pauseMenu which holds 3 buttons, continue, restart, exit
+     * @param g2d graphics2D object
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -328,6 +370,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * A, D key: move the player bar left and right
+     * ESCAPE key: show PauseMenu
+     * SPACE key: continue the game
+     * ALT+SHIFT+F1 key: debugConsole
+     * @param keyEvent keystroke
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -357,11 +406,19 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * if key is released, player bar stop moving
+     * @param keyEvent keystroke
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         wall.player.stop();
     }
 
+    /**
+     * to check if mouse click any buttons in PauseMenu
+     * @param mouseEvent mouse action
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -409,6 +466,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
+    /**
+     * @param mouseEvent mouse action
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -423,6 +483,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * if gameFrame is not in use but gaming is still True,
+     * stop timer and output message "Focus Lost" on screen
+     */
     public void onLostFocus(){
         gameTimer.stop();
         message = "Focus Lost";

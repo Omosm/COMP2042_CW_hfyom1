@@ -7,8 +7,7 @@ import java.awt.Point;
 
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * inherits from superclass Brick
  */
 public class ClayBrick extends Brick {
 
@@ -19,8 +18,11 @@ public class ClayBrick extends Brick {
 
 
 
-
-
+    /**
+     * constructor of class ClayBrick
+     * @param point position of individual brick
+     * @param size size of brick
+     */
     public ClayBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,CLAY_STRENGTH);
     }
@@ -30,6 +32,10 @@ public class ClayBrick extends Brick {
         return new Rectangle(pos,size);
     }*/
 
+    /**
+     * getter for brickFace
+     * @return brickFace
+     */
     @Override
     public Shape getBrick() {
         return super.getBrickFace();

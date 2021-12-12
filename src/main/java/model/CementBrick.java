@@ -8,6 +8,9 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
 
+/**
+ * inherits from superclass Brick
+ */
 public class CementBrick extends Brick {
 
 
@@ -19,12 +22,26 @@ public class CementBrick extends Brick {
     private Shape brickFace;
 
 
+    /**
+     * constructor of class CementBrick
+     *
+     * @param point position of individual brick
+     * @param size size of brick
+     */
     public CementBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
         brickFace = super.getBrickFace();
     }
 
+    /**
+     * if brick is broken return False, then call impact method
+     * if brick is still not broken, then draw crack on brickFace
+     *
+     * @param point (up, down, left, right) face of ball where it impacts brick
+     * @param dir direction of crack
+     * @return boolean True or False
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -39,6 +56,9 @@ public class CementBrick extends Brick {
     }
 
 
+    /**
+     * update brick by drawing crack on brickFace
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -47,6 +67,9 @@ public class CementBrick extends Brick {
         }
     }
 
+    /**
+     * Restore bricks' brokenFlag, strength, and remove crack on brickFace
+     */
     public void repair(){
         super.repair();
         crack.reset();
@@ -58,6 +81,10 @@ public class CementBrick extends Brick {
         return new Rectangle(pos,size);
     }*/
 
+    /**
+     * getter for brickFace
+     * @return brickFace
+     */
     @Override
     public Shape getBrick() {
         return brickFace;

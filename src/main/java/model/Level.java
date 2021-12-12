@@ -12,6 +12,15 @@ public class Level {
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
+    /**
+     * makeLevels constructs levels with respective bricks and store it into a 2D array of type Brick
+     *
+     * @param drawArea Rectangle GameFrame where game is rendered/drawn
+     * @param brickCount number of bricks in wall
+     * @param lineCount lines of bricks in wall
+     * @param brickDimensionRatio width-to-height ratio of a single brick
+     * @return tmp array which stores individual levels of bricks
+     */
     Brick[][] makeLevels(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -21,6 +30,16 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * make wall of clay bricks for the first level
+     *
+     * @param drawArea Rectangle GameFrame where game is drawn
+     * @param brickCnt number of bricks in wall
+     * @param lineCnt lines of bricks in wall
+     * @param brickSizeRatio width-to-height ratio of a single brick
+     * @param type types of brick
+     * @return array with 31 bricks
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -61,6 +80,17 @@ public class Level {
 
     }
 
+    /**
+     * make a wall with 2 types of bricks arranged in a chessboard pattern for level 2, 3, 4
+     *
+     * @param drawArea Rectangle GameFrame where game is rendered/drawn
+     * @param brickCnt number of bricks in wall(30)
+     * @param lineCnt lines of bricks in wall(3)
+     * @param brickSizeRatio width-to-height ratio of a single brick
+     * @param typeA first type of brick
+     * @param typeB second type of brick
+     * @return array with 31 bricks
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -106,6 +136,14 @@ public class Level {
         return tmp;
     }
 
+    /**
+     * creates a brick of specified type at the exact location point
+     *
+     * @param point location where brick is constructed
+     * @param size Size of a single brick
+     * @param type type of bricks
+     * @return
+     */
     private Brick makeBrick(Point point, Dimension size, int type){
         Brick out;
         switch(type){

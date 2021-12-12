@@ -46,6 +46,16 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    /**
+     * construct for class Wall which initialize and set values for startPoint, levels, ballCount, area
+     * it also initializes a random speed for ball for every new level
+     *
+     * @param drawArea Rectangle GameFrame where game is rendered/drawn
+     * @param brickCount number of bricks in wall(30)
+     * @param lineCount lines of bricks in wall(3)
+     * @param brickDimensionRatio width-to-height ratio of a single brick
+     * @param ballPos position of ball(300, 430)
+     */
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -78,17 +88,29 @@ public class Wall {
     }
 
 
-
+    /**
+     * Construct a new rubber ball
+     * @param ballPos position of ball (300, 430)
+     */
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
 
-
+    /**
+     * player and ball move
+     */
     public void move(){
         player.move();
         ball.move();
     }
 
+    /**
+     * it checks all impacts
+     * checks if player bar is impacted by ball
+     * check if brick are impacted until broken
+     * checks if ball impacted the border of gameFrame
+     * check if ball is lost by going out of bounds
+     */
     public void findImpacts(){
         if(player.impact(ball)){
             ball.reverseY();
@@ -111,6 +133,12 @@ public class Wall {
         }
     }
 
+    /**
+     * for switch case condition, it finds the direction of the brick where the ball impacts it
+     * then it rebounds the ball in reverse direction
+     *
+     * @return False if the brick is broken, then call impact method and return brokenFlag
+     */
     private boolean impactWall(){
         for(Brick b : bricks){
             switch(b.findImpact(ball)) {
@@ -134,23 +162,43 @@ public class Wall {
         return false;
     }
 
+    /**
+     * check if ball impacts border of gameFrame
+     * @return True if the ball goes beyond the left or right edge of the gameFrame
+     */
     private boolean impactBorder(){
         Point2D p = ball.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+    /**
+     * getter for brickCount
+     * @return number of bricks
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * getter for ballCount
+     * @return number of balls
+     */
     public int getBallCount(){
         return ballCount;
     }
 
+    /**
+     * getter for ballLost
+     * @return boolean value of ballLost
+     */
     public boolean isBallLost(){
         return ballLost;
     }
 
+    /**
+     * it resets the position of player bar and ball
+     * it then resets the direction of ball movement, and ballLost to false
+     */
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
@@ -166,6 +214,10 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * it restores all the brick
+     * it also reset the ballCount to 3 again
+     */
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
@@ -173,31 +225,55 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * @return true if number of balls is 0
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * @return true if number of bricks is 0
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * it goes to the next level, and it also restores the brickCount back to 31
+     */
     public void nextLevel(){
         bricks = levels[level++];
         this.brickCount = bricks.length;
     }
 
+    /**
+     * returns True if there is level remaining
+     * @return boolean True or False
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * setter for ball's speed X
+     * @param s integer value for speedX
+     */
     public void setBallXSpeed(int s){
         ball.setXSpeed(s);
     }
 
+    /**
+     * setter for ball's speed Y
+     * @param s integer value for speedY
+     */
     public void setBallYSpeed(int s){
         ball.setYSpeed(s);
     }
 
+    /**
+     * reset number of balls to 3
+     */
     public void resetBallCount(){
         ballCount = 3;
     }

@@ -20,6 +20,9 @@ package controller;
 import java.awt.*;
 
 
+/**
+ * represents the bar that the player is supposed to control
+ */
 public class Player {
 
 
@@ -35,6 +38,15 @@ public class Player {
     private int max;
 
 
+    /**
+     * Constructor of Player class
+     * initialize and set value for ballpoint, moveAmount, playerFace, min, max
+     *
+     * @param ballPoint Position of the ball (which is always the startPoint (300, 430))
+     * @param width Width of player green bar
+     * @param height Height of player green bar
+     * @param container Rectangle GameFrame where game is rendered/drawn
+     */
     public Player(Point ballPoint,int width,int height,Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
@@ -44,15 +56,30 @@ public class Player {
 
     }
 
+    /**
+     * Constructs a Rectangle player bar at default location p,so that ball is always at the middle
+     *
+     * @param width Width of player green bar
+     * @param height Height of player green bar
+     * @return Rectangle shaped player green bar
+     */
     Rectangle makeRectangle(int width, int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
+    /**
+     *returns True if ball impacted player bar
+     * @param b ball, b
+     * @return boolean True or False
+     */
     public boolean impact(Ball b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
     }
 
+    /**
+     * move player bar
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
@@ -61,22 +88,39 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * move player bar to the left
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * move player bar towards right
+     */
     public void movRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * stop player bar
+     */
     public void stop(){
         moveAmount = 0;
     }
 
+    /**
+     * getter for player bar
+     * @return Rectangle playerFace
+     */
     public Shape getPlayerFace(){
         return  playerFace;
     }
 
+    /**
+     * move player bar to specified point P
+     * @param p specified location Point p
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);

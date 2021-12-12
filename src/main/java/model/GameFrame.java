@@ -25,7 +25,9 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-
+/**
+ * GameFrame is a JFrame that holds the components homeMenu and gameBoard
+ */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -35,6 +37,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
+    /**
+     * constructor of class GameFrame which set layout of the frame to display gameBoard and homeMenu
+     */
     public GameFrame(){
         super();
 
@@ -53,6 +58,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * initialize GameFrame with a specific title
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,6 +69,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     * this method will be invoked if start button is clicked in HomeMenu,
+     * it also removes homeMenu to display gameBoard
+     */
     public void enableGameBoard(){
         gameBoard.pname= homeMenu.pnames;
         this.dispose();
@@ -73,6 +85,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * set the location of gameFrame relative to screenSize regardless of any monitor
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -80,7 +95,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setLocation(x,y);
     }
 
-
+    /**
+     * if gameFrame is in use, then set gaming to true
+     * @param windowEvent status of window
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -94,6 +112,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * if gameFrame is not in use but gaming is still True,
+     * stop timer and output message "Focus Lost" on screen
+     * @param windowEvent status of window
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)

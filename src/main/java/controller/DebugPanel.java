@@ -55,11 +55,21 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * set layout of panel to fit 2 buttons and 2 columns
+     */
     private void initialize(){
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
     }
 
+    /**
+     * button with specified title and color
+     *
+     * @param title title of button
+     * @param e action events
+     * @return JButton
+     */
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
         out.addActionListener(e);
@@ -68,6 +78,14 @@ public class DebugPanel extends JPanel {
         return  out;
     }
 
+    /**
+     * slider with specified min, max value and color
+     *
+     * @param min minimum value of slider
+     * @param max maximum value of slider
+     * @param e change events
+     * @return JSlider
+     */
     private JSlider makeSlider(int min, int max, ChangeListener e){
         JSlider out = new JSlider(min,max);
         out.setMajorTickSpacing(1);
@@ -79,6 +97,12 @@ public class DebugPanel extends JPanel {
         return out;
     }
 
+    /**
+     * when the panel is opened, the slider is automatically set to the value of the ball
+     *
+     * @param x speedX
+     * @param y speedY
+     */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);

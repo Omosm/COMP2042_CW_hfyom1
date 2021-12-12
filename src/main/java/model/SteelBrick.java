@@ -34,18 +34,34 @@ public class SteelBrick extends Brick {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * constructor of class SteelBrick which set value for bricks' position, size, color, strength, brokenFlag in superclass Brick
+     *
+     * @param point position of individual brick
+     * @param size size of brick
+     */
     public SteelBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
         brickFace = super.getBrickFace();
     }
 
+    /**
+     * if the random generated double is less than STEEL_PROBABILITY, then steel brick is broken
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();
         }
     }
 
+    /**
+     * if brick is broken return False, then call impact method and return brokenFlag
+     *
+     * @param point (up, down, left, right) face of ball where it impacts brick
+     * @param dir direction of crack
+     * @return boolean True or False
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -58,6 +74,10 @@ public class SteelBrick extends Brick {
         return new Rectangle(pos,size);
     }*/
 
+    /**
+     * getter for brickFace
+     * @return brickFace
+     */
     @Override
     public Shape getBrick() {
         return brickFace;

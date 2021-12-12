@@ -3,6 +3,9 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * InfoFrame that pops up when info button is clicked in HomeMenu
+ */
 public class InfoMenu extends JFrame {
 
     private static final int DEF_WIDTH = 550;

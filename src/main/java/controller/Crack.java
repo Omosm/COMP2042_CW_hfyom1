@@ -25,6 +25,13 @@ public class Crack {
     private static Random rnd;
 
 
+    /**
+     * constructor of class Crack
+     * initialize and set value for crackPath, crackDepth, steps
+     *
+     * @param crackDepth default int value of 1
+     * @param steps default int value of 35
+     */
     public Crack(int crackDepth, int steps) {
 
         crack = new GeneralPath();
@@ -35,15 +42,30 @@ public class Crack {
     }
 
 
+    /**
+     * getter for crackPath
+     * @return crackPath
+     */
     public GeneralPath draw() {
 
         return crack;
     }
 
+    /**
+     * remove crackPath in bricks
+     */
     public void reset() {
         crack.reset();
     }
 
+    /**
+     * first makeCrack(Overload) method
+     * to determine the start and end point of where crackPath will be drawn
+     *
+     * @param point (up, down, left, right) face of ball where it impacts brick
+     * @param direction direction of crack
+     * @param brickFace brickFace where cracks are drawn onto
+     */
     public void makeCrack(Point2D point, int direction, Shape brickFace) {
         Rectangle bounds = brickFace.getBounds();
 
@@ -84,6 +106,13 @@ public class Crack {
         }
     }
 
+    /**
+     * second makeCrack(Overload method)
+     * draw crackPath on brickFace from specified start point to end point
+     *
+     * @param start location of brick where it is impacted by ball
+     * @param end a random end point for crackPath
+     */
     protected void makeCrack(Point start, Point end) {
 
         GeneralPath path = new GeneralPath();
@@ -115,6 +144,11 @@ public class Crack {
         crack.append(path, true);
     }
 
+    /**
+     * return a random number
+     * @param bound int value of 1
+     * @return random number between 0 and 1
+     */
     private int randomInBounds(int bound) {
         int n = (bound * 2) + 1;
         return rnd.nextInt(n) - bound;
@@ -135,6 +169,14 @@ public class Crack {
 
     }
 
+    /**
+     * return a random coordinate along x-axis or y-axis, which acts as end point for crackPath
+     *
+     * @param from start point
+     * @param to end point
+     * @param direction Horizontal or Vertical
+     * @return random coordinate
+     */
     private Point makeRandomPoint(Point from, Point to, int direction) {
 
         Point out = new Point();
